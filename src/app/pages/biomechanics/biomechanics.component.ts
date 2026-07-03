@@ -78,7 +78,7 @@ export class BiomechanicsComponent implements AfterViewInit, OnDestroy {
     });
 
     const explainerCards = this.explainerGridRef.nativeElement.querySelectorAll('.explainer-card');
-    this.scrollAnim.animateFadeUp(explainerCards, 0.15);
+    this.scrollAnim.animateFadeUp(explainerCards, 0.15, this.explainerGridRef.nativeElement);
   }
 
   ngOnDestroy(): void {

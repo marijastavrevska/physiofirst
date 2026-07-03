@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Subscription } from 'rxjs';
 import { CalendarPickerComponent } from '../../shared/components/calendar-picker/calendar-picker.component';
 import { ReservationService } from '../../core/services/reservation.service';
 import { NotificationService } from '../../core/services/notification.service';
@@ -59,6 +60,9 @@ export class ContactComponent implements OnDestroy {
     notes: ['', [Validators.maxLength(500)]],
   });
 
+  private readonly initialFormValue = this.form.getRawValue();
+  private submitSubscription?: Subscription;
+
   constructor(
     private fb: FormBuilder,
     private reservationService: ReservationService,
@@ -89,7 +93,7 @@ export class ContactComponent implements OnDestroy {
     this.submitting.set(true);
     const value = this.form.getRawValue();
 
-    this.reservationService
+    this.submitSubscription = this.reservationService
       .submit({
         fullName: value.fullName!,
         phone: value.phone!,
@@ -112,19 +116,13 @@ export class ContactComponent implements OnDestroy {
   }
 
   resetForm(): void {
-    this.form.reset({
-      fullName: '',
-      phone: '',
-      email: '',
-      serviceType: '',
-      preferredDate: '',
-      preferredTime: '',
-      notes: '',
-    });
+    this.form.reset(this.initialFormValue);
     this.form.get('preferredTime')?.disable();
     this.selectedDate.set(null);
     this.submitted.set(false);
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.submitSubscription?.unsubscribe();
+  }
 }

@@ -4,9 +4,12 @@
 
 <a
   *ngIf="routerLink"
-  [routerLink]="routerLink"
+  [routerLink]="disabled ? null : routerLink"
   class="app-btn"
   [class.app-btn--outline]="variant === 'outline'"
+  [class.app-btn--disabled]="disabled"
+  [attr.aria-disabled]="disabled"
+  [attr.tabindex]="disabled ? -1 : null"
 >
   <ng-container [ngTemplateOutlet]="label"></ng-container>
 </a>

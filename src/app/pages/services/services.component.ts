@@ -86,10 +86,10 @@ export class ServicesComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     const cards = this.cardsGridRef.nativeElement.querySelectorAll('.service-card');
-    this.scrollAnim.animateFadeUp(cards, 0.12);
+    this.scrollAnim.animateFadeUp(cards, 0.12, this.cardsGridRef.nativeElement);
 
     const packages = this.packagesGridRef.nativeElement.querySelectorAll('.package-card');
-    this.scrollAnim.animateFadeUp(packages, 0.15);
+    this.scrollAnim.animateFadeUp(packages, 0.15, this.packagesGridRef.nativeElement);
   }
 
   ngOnDestroy(): void {
