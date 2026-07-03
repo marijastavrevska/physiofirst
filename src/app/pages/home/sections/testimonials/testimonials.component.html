@@ -1,0 +1,19 @@
+<section class="testimonials">
+  <div class="container">
+    <p class="testimonials__overline">ИСКУСТВА НА ПАЦИЕНТИ</p>
+    <h2 class="testimonials__title">Што велат нашите пациенти</h2>
+
+    <div class="testimonials__grid" #grid>
+      <div class="testimonial-card" *ngFor="let t of testimonials">
+        <div class="testimonial-card__stars">
+          <svg *ngFor="let s of [1,2,3,4,5]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.9-6.2 3.9 1.6-7L2 9.2l7.1-.6z" />
+          </svg>
+        </div>
+        <p class="testimonial-card__quote">&ldquo;{{ t.quote }}&rdquo;</p>
+        <p class="testimonial-card__name">{{ t.name }}</p>
+        <p class="testimonial-card__treatment">{{ t.treatment }}</p>
+      </div>
+    </div>
+  </div>
+</section>

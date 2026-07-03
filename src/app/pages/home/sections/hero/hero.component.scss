@@ -1,0 +1,90 @@
+@import '../../../../../styles/mixins';
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0f1a, #0a1628, #0d1f2d, #0a0f1a);
+  background-size: 300% 300%;
+  animation: gradientShift 8s ease infinite;
+
+  &__lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  &__line {
+    fill: none;
+    stroke: var(--color-accent);
+    stroke-opacity: 0.15;
+    stroke-width: 2;
+    stroke-dasharray: 1400;
+    stroke-dashoffset: 1400;
+    animation: drawLine 5s ease-in-out 0.5s infinite alternate;
+  }
+
+  &__line.l2 { animation-duration: 5.5s; animation-delay: 0.9s; }
+  &__line.l3 { animation-duration: 4.5s; animation-delay: 1.3s; }
+  &__line.l4 { animation-duration: 6s; animation-delay: 1.7s; }
+  &__line.l5 { animation-duration: 5.2s; animation-delay: 2.1s; }
+  &__line.l6 { animation-duration: 4.8s; animation-delay: 2.5s; }
+  &__line.l7 { animation-duration: 5.8s; animation-delay: 2.9s; }
+  &__line.l8 { animation-duration: 4.2s; animation-delay: 3.3s; }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+  }
+
+  &__overline {
+    @include overline;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    max-width: 800px;
+    margin-bottom: 24px;
+
+    .accent {
+      color: var(--color-accent);
+    }
+  }
+
+  &__subheadline {
+    color: var(--color-muted);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 36px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__scroll-indicator {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-accent);
+    animation: bounceDown 1.8s ease-in-out infinite;
+    z-index: 1;
+  }
+}

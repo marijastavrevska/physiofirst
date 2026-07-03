@@ -1,0 +1,9 @@
+@import '../../../../styles/mixins';
+
+.app-card {
+  @include card;
+
+  &--padded {
+    padding: 28px;
+  }
+}

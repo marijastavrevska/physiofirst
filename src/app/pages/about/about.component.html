@@ -1,0 +1,69 @@
+<section class="about-hero">
+  <div class="container">
+    <h1 class="about-hero__title">Запознајте го Христијан Стојановски</h1>
+    <p class="about-hero__subtitle">Физиотерапевт со меѓународно признати сертификати</p>
+  </div>
+</section>
+
+<section class="bio">
+  <div class="container bio__grid">
+    <div class="bio__image" data-placeholder="Христијан Стојановски — физиотерапевт">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+      </svg>
+    </div>
+    <div class="bio__text">
+      <p>
+        Христијан Стојановски е високо квалификуван физиотерапевт со меѓународно
+        признати сертификати во Ергон Техника, Мануелна Лимфна Дренажа, Медицинска
+        Акупунктура, Спинални Манипулации (ОМТ), Хиџама Терапија и Кинезиотејпинг.
+        Поранешен физиотерапевт на РК Еурофарм Пелистер.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="certifications">
+  <div class="container">
+    <h2 class="certifications__title">Сертификати</h2>
+    <div class="certifications__grid" #certGrid>
+      <div class="cert-badge" *ngFor="let cert of certifications">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.5l-4.8 2.4.9-5.4-3.9-3.8 5.4-.8z" />
+        </svg>
+        <span>{{ cert }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mission">
+  <div class="container mission__box">
+    <h2 class="mission__title">Нашата Мисија</h2>
+    <p class="mission__text">
+      Да воспоставиме професионален и грижлив однос со секој пациент, позитивно
+      влијаејќи на неговото целокупно здравје преку физиотерапевтска грижа
+      базирана на докази.
+    </p>
+  </div>
+</section>
+
+<section class="philosophy">
+  <div class="container">
+    <p class="philosophy__quote">„Правилниот избор на третман е наш заштитен знак.“</p>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="container gallery__grid" #gallery>
+    <div class="gallery-item" *ngFor="let _ of galleryPlaceholders" data-placeholder="Фотографија наскоро">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="6" width="18" height="13" rx="2" />
+        <circle cx="12" cy="12.5" r="3.2" />
+        <path d="M8 6l1.5-2h5L16 6" />
+      </svg>
+      <span>Фотографија наскоро</span>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+<section class="bio-hero">
+  <div class="container">
+    <h1 class="bio-hero__title">Прво Биомеханичко Студио во Битола</h1>
+    <p class="bio-hero__subtitle">
+      Објективна анализа на движењето. Базирано на податоци. Единствено во Македонија.
+    </p>
+  </div>
+</section>
+
+<section class="process">
+  <div class="container">
+    <h2 class="process__title">Нашиот Процес</h2>
+
+    <div class="process__flow">
+      <svg class="process__line" viewBox="0 0 1000 10" preserveAspectRatio="none" aria-hidden="true">
+        <path #processLine d="M0 5 L1000 5" />
+      </svg>
+
+      <div class="process-step" *ngFor="let step of steps">
+        <div class="process-step__number">{{ step.number }}</div>
+        <h3 class="process-step__title">{{ step.title }}</h3>
+        <p class="process-step__desc">{{ step.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container stats__grid">
+    <div class="stat" *ngFor="let stat of stats">
+      <div class="stat__value">
+        <span #statValue>0</span>
+      </div>
+      <p class="stat__label">{{ stat.label }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="explainer">
+  <div class="container">
+    <h2 class="explainer__title">Што е Биомеханика?</h2>
+    <div class="explainer__grid" #explainerGrid>
+      <div class="explainer-card" *ngFor="let item of explainers">
+        <div class="explainer-card__icon" [ngSwitch]="item.icon">
+          <svg *ngSwitchCase="'move'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20" />
+          </svg>
+          <svg *ngSwitchCase="'target'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="5" />
+            <circle cx="12" cy="12" r="1" />
+          </svg>
+          <svg *ngSwitchCase="'brain'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 4a3 3 0 00-3 3v1a3 3 0 00-1 5.8V15a3 3 0 003 3h1M15 4a3 3 0 013 3v1a3 3 0 011 5.8V15a3 3 0 01-3 3h-1M9 4v14M15 4v14" />
+          </svg>
+        </div>
+        <h3 class="explainer-card__title">{{ item.title }}</h3>
+        <p class="explainer-card__text">{{ item.text }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bio-cta">
+  <div class="container">
+    <app-button variant="primary" routerLink="/contact">Закажи Биомеханичка Проценка</app-button>
+  </div>
+</section>

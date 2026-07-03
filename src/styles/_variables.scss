@@ -1,0 +1,25 @@
+:root {
+  --color-bg: #0a0f1a;
+  --color-surface: #111827;
+  --color-card: #1a2332;
+  --color-accent: #00d4c8;
+  --color-accent-glow: rgba(0, 212, 200, 0.3);
+  --color-text: #f5f5f0;
+  --color-muted: #6b7280;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-coral: #ff6b6b;
+
+  --radius-card: 12px;
+  --radius-btn: 999px;
+
+  --shadow-glow: 0 0 20px rgba(0, 212, 200, 0.3);
+  --transition: all 0.3s ease;
+
+  --font-family: 'Inter', sans-serif;
+
+  --header-height: 76px;
+  --header-height-scrolled: 64px;
+
+  --max-width: 1200px;
+}

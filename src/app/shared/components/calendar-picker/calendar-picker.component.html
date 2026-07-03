@@ -1,0 +1,33 @@
+<div class="calendar">
+  <div class="calendar__header">
+    <button type="button" class="calendar__nav" (click)="prevMonth()" aria-label="Претходен месец">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6" /></svg>
+    </button>
+    <span class="calendar__month">{{ monthLabel() }}</span>
+    <button type="button" class="calendar__nav" (click)="nextMonth()" aria-label="Следен месец">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6" /></svg>
+    </button>
+  </div>
+
+  <div class="calendar__weekdays">
+    <span *ngFor="let label of weekdayLabels">{{ label }}</span>
+  </div>
+
+  <div class="calendar__grid">
+    <ng-container *ngFor="let week of weeks()">
+      <button
+        *ngFor="let day of week"
+        type="button"
+        class="calendar__day"
+        [class.calendar__day--muted]="!day.inCurrentMonth"
+        [class.calendar__day--disabled]="day.disabled"
+        [class.calendar__day--today]="day.isToday"
+        [class.calendar__day--selected]="day.isSelected"
+        [disabled]="day.disabled"
+        (click)="selectDay(day)"
+      >
+        {{ day.date.getDate() }}
+      </button>
+    </ng-container>
+  </div>
+</div>

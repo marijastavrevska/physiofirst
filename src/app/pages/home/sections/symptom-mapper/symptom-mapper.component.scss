@@ -1,0 +1,85 @@
+@import '../../../../../styles/mixins';
+
+.symptom-mapper {
+  padding: 80px 0;
+  text-align: center;
+
+  &__overline {
+    @include overline;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    @include section-title;
+    margin-bottom: 8px;
+  }
+
+  &__subtitle {
+    color: var(--color-muted);
+    margin-bottom: 40px;
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  &__panel {
+    margin: 40px auto 0;
+    max-width: 640px;
+    background: var(--color-card);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-glow);
+    padding: 32px;
+    overflow: hidden;
+  }
+
+  &__panel-area {
+    color: var(--color-accent);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+
+  &__panel-service {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  &__panel-desc {
+    color: var(--color-muted);
+    margin-bottom: 24px;
+  }
+}
+
+.area-pill {
+  border: 2px solid rgba(0, 212, 200, 0.4);
+  color: var(--color-text);
+  background: transparent;
+  border-radius: var(--radius-btn);
+  padding: 10px 22px;
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+
+  &:hover {
+    border-color: var(--color-accent);
+  }
+
+  &.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #0a0f1a;
+    box-shadow: var(--shadow-glow);
+  }
+}

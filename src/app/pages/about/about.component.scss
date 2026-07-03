@@ -1,0 +1,169 @@
+@import '../../../styles/mixins';
+
+.about-hero {
+  padding: calc(var(--header-height) + 64px) 0 48px;
+  text-align: center;
+
+  &__title {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+  }
+}
+
+.bio {
+  padding-bottom: 64px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 48px;
+    align-items: center;
+
+    @include respond(mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__image {
+    aspect-ratio: 4 / 5;
+    background: var(--color-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-card);
+    @include flex-center;
+    color: var(--color-accent);
+
+    svg {
+      width: 30%;
+      height: 30%;
+    }
+  }
+
+  &__text p {
+    color: var(--color-muted);
+    line-height: 1.8;
+    font-size: 1.05rem;
+  }
+}
+
+.certifications {
+  @include section-padding;
+  text-align: center;
+  background: var(--color-surface);
+
+  &__title {
+    @include section-title;
+    margin-bottom: 40px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    @include respond(mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.cert-badge {
+  @include card;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  span {
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-align: left;
+  }
+}
+
+.mission {
+  @include section-padding;
+
+  &__box {
+    background: var(--color-card);
+    border-left: 4px solid var(--color-accent);
+    border-radius: var(--radius-card);
+    padding: 48px 40px;
+    text-align: center;
+  }
+
+  &__title {
+    @include section-title;
+    margin-bottom: 16px;
+  }
+
+  &__text {
+    color: var(--color-muted);
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+}
+
+.philosophy {
+  padding: 64px 0;
+  text-align: center;
+
+  &__quote {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-style: italic;
+    font-weight: 700;
+    max-width: 780px;
+    margin: 0 auto;
+    color: var(--color-text);
+  }
+}
+
+.gallery {
+  padding-bottom: 100px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    @include respond(mobile) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.gallery-item {
+  aspect-ratio: 1;
+  background: var(--color-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--color-muted);
+
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  span {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,21 @@
+<ng-template #label>
+  <ng-content></ng-content>
+</ng-template>
+
+<a
+  *ngIf="routerLink"
+  [routerLink]="routerLink"
+  class="app-btn"
+  [class.app-btn--outline]="variant === 'outline'"
+>
+  <ng-container [ngTemplateOutlet]="label"></ng-container>
+</a>
+<button
+  *ngIf="!routerLink"
+  [type]="type"
+  class="app-btn"
+  [class.app-btn--outline]="variant === 'outline'"
+  [disabled]="disabled"
+>
+  <ng-container [ngTemplateOutlet]="label"></ng-container>
+</button>

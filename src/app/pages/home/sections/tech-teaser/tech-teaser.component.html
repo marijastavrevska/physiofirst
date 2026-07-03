@@ -1,0 +1,32 @@
+<section class="tech-teaser">
+  <div class="container">
+    <p class="tech-teaser__overline">НАШИОТ АРСЕНАЛ</p>
+    <h2 class="tech-teaser__title">Паметна Технологија. Вистински Резултати.</h2>
+
+    <div class="tech-teaser__grid" #grid>
+      <div class="tech-card" *ngFor="let card of cards">
+        <div class="tech-card__icon" [ngSwitch]="card.icon">
+          <svg *ngSwitchCase="'scan'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 8V5a1 1 0 011-1h3M20 8V5a1 1 0 00-1-1h-3M4 16v3a1 1 0 001 1h3M20 16v3a1 1 0 01-1 1h-3" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          <svg *ngSwitchCase="'wave'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 12c2-4 4 4 6 0s4 4 6 0 4 4 6 0" />
+          </svg>
+          <svg *ngSwitchCase="'pulse'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h4l2-7 4 14 2-7h6" />
+          </svg>
+          <svg *ngSwitchCase="'wind'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 8h11a2.5 2.5 0 100-5M3 16h15a2.5 2.5 0 110 5M3 12h8" />
+          </svg>
+          <svg *ngSwitchCase="'zap'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" />
+          </svg>
+        </div>
+        <h3 class="tech-card__name">{{ card.name }}</h3>
+        <p class="tech-card__desc">{{ card.description }}</p>
+        <a routerLink="/technology" class="tech-card__link">Дознај повеќе →</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,76 @@
+@import '../../../../../styles/mixins';
+
+.tech-teaser {
+  padding: 80px 0;
+  text-align: center;
+
+  &__overline {
+    @include overline;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    @include section-title;
+    margin-bottom: 48px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: left;
+
+    @include respond(tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond(mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.tech-card {
+  @include card;
+  padding: 28px 24px;
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(0, 212, 200, 0.12);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  &__name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  &__desc {
+    color: var(--color-muted);
+    font-size: 0.88rem;
+    margin-bottom: 16px;
+  }
+
+  &__link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

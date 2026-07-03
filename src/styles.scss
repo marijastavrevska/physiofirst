@@ -1,0 +1,59 @@
+@import './styles/variables';
+@import './styles/mixins';
+@import './styles/typography';
+@import './styles/animations';
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+.container {
+  @include container;
+}
+
+.btn-primary {
+  @include btn-primary;
+}
+
+.btn-outline {
+  @include btn-outline;
+}
+
+.card {
+  @include card;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent);
+  border-radius: 999px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) transparent;
+}
+
+button {
+  font-family: var(--font-family);
+}

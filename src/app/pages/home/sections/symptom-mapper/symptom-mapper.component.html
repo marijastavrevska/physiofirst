@@ -1,0 +1,25 @@
+<section class="symptom-mapper">
+  <div class="container">
+    <p class="symptom-mapper__overline">ИНТЕРАКТИВНА ДИЈАГНОЗА</p>
+    <h2 class="symptom-mapper__title">Што ве боли?</h2>
+    <p class="symptom-mapper__subtitle">Кликнете на делот од телото за препорака</p>
+
+    <div class="symptom-mapper__grid">
+      <button
+        *ngFor="let area of bodyAreas"
+        class="area-pill"
+        [class.active]="selected === area.key"
+        (click)="select(area.key)"
+      >
+        {{ area.label }}
+      </button>
+    </div>
+
+    <div class="symptom-mapper__panel" *ngIf="selectedRecommendation" [@slideDown]>
+      <p class="symptom-mapper__panel-area">{{ selectedLabel }}</p>
+      <h3 class="symptom-mapper__panel-service">{{ selectedRecommendation.service }}</h3>
+      <p class="symptom-mapper__panel-desc">{{ selectedRecommendation.description }}</p>
+      <a routerLink="/contact" class="btn-primary">Закажи ја оваа услуга</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,155 @@
+@import '../../../styles/mixins';
+
+.services-hero {
+  padding: calc(var(--header-height) + 64px) 0 48px;
+  text-align: center;
+
+  &__title {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+  }
+}
+
+.services-cards {
+  @include section-padding;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @include respond(tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond(mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.service-card {
+  @include card;
+  position: relative;
+  padding: 28px;
+
+  &--premium {
+    border-color: rgba(0, 212, 200, 0.5);
+  }
+
+  &__badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--color-accent);
+    color: #0a0f1a;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: var(--radius-btn);
+  }
+
+  &__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(0, 212, 200, 0.12);
+    color: var(--color-accent);
+    @include flex-center;
+    margin-bottom: 18px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  &__audience {
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  &__desc {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+}
+
+.packages {
+  @include section-padding;
+  text-align: center;
+
+  &__title {
+    @include section-title;
+    margin-bottom: 40px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+
+    @include respond(mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.package-card {
+  @include card;
+  position: relative;
+  padding: 36px 28px;
+  text-align: center;
+
+  &--popular {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-glow);
+  }
+
+  &__badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-accent);
+    color: #0a0f1a;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 5px 14px;
+    border-radius: var(--radius-btn);
+    white-space: nowrap;
+  }
+
+  &__name {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  &__sessions {
+    color: var(--color-accent);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  &__desc {
+    color: var(--color-muted);
+    margin-bottom: 24px;
+  }
+}

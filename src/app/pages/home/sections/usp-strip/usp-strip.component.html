@@ -1,0 +1,28 @@
+<section class="usp-strip">
+  <div class="container">
+    <div class="usp-strip__grid" #grid>
+      <div class="usp-card" *ngFor="let usp of usps">
+        <div class="usp-card__icon" [ngSwitch]="usp.icon">
+          <svg *ngSwitchCase="'user'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+          </svg>
+          <svg *ngSwitchCase="'scan'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 8V5a1 1 0 011-1h3M20 8V5a1 1 0 00-1-1h-3M4 16v3a1 1 0 001 1h3M20 16v3a1 1 0 01-1 1h-3" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          <svg *ngSwitchCase="'chip'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="7" y="7" width="10" height="10" rx="1" />
+            <path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3" />
+          </svg>
+          <svg *ngSwitchCase="'clock'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v5l3 3" />
+          </svg>
+        </div>
+        <h3 class="usp-card__title">{{ usp.title }}</h3>
+        <p class="usp-card__desc">{{ usp.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

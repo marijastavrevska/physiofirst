@@ -1,0 +1,58 @@
+<section class="services-hero">
+  <div class="container">
+    <h1 class="services-hero__title">Решенија, не само третмани</h1>
+    <p class="services-hero__subtitle">Изберете го патот кон вашето закрепнување</p>
+  </div>
+</section>
+
+<section class="services-cards">
+  <div class="container">
+    <div class="services-cards__grid" #cardsGrid>
+      <div
+        class="service-card"
+        *ngFor="let cat of categories"
+        [class.service-card--premium]="cat.premium"
+      >
+        <span class="service-card__badge" *ngIf="cat.premium">ПРЕМИУМ</span>
+        <div class="service-card__icon" [ngSwitch]="cat.icon">
+          <svg *ngSwitchCase="'cross'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+          <svg *ngSwitchCase="'posture'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="5" r="2" />
+            <path d="M12 7v6l4 4M12 13l-4 4" />
+          </svg>
+          <svg *ngSwitchCase="'run'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="14" cy="5" r="2" />
+            <path d="M6 20l3-5 3 2 2-4 4 1M9 12l2-4 4 1" />
+          </svg>
+          <svg *ngSwitchCase="'brain'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 4a3 3 0 00-3 3v1a3 3 0 00-1 5.8V15a3 3 0 003 3h1M15 4a3 3 0 013 3v1a3 3 0 011 5.8V15a3 3 0 01-3 3h-1M9 4v14M15 4v14" />
+          </svg>
+          <svg *ngSwitchCase="'scan'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 8V5a1 1 0 011-1h3M20 8V5a1 1 0 00-1-1h-3M4 16v3a1 1 0 001 1h3M20 16v3a1 1 0 01-1 1h-3" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        </div>
+        <h3 class="service-card__name">{{ cat.name }}</h3>
+        <p class="service-card__audience" *ngIf="cat.audience">{{ cat.audience }}</p>
+        <p class="service-card__desc">{{ cat.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="packages">
+  <div class="container">
+    <h2 class="packages__title">Пакети на Третмани</h2>
+    <div class="packages__grid" #packagesGrid>
+      <div class="package-card" *ngFor="let pkg of packages" [class.package-card--popular]="pkg.popular">
+        <span class="package-card__badge" *ngIf="pkg.popular">НАЈПОПУЛАРНО</span>
+        <h3 class="package-card__name">{{ pkg.name }}</h3>
+        <p class="package-card__sessions">{{ pkg.sessions }}</p>
+        <p class="package-card__desc">{{ pkg.description }}</p>
+        <app-button variant="outline" routerLink="/contact">Дознај ја цената</app-button>
+      </div>
+    </div>
+  </div>
+</section>

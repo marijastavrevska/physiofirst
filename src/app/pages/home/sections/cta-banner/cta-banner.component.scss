@@ -1,0 +1,23 @@
+@import '../../../../../styles/mixins';
+
+.cta-banner {
+  padding: 60px 0 100px;
+
+  &__box {
+    background: linear-gradient(135deg, #0d2137, #0a1f1e);
+    border-left: 4px solid var(--color-accent);
+    border-radius: var(--radius-card);
+    padding: 56px 40px;
+    text-align: center;
+  }
+
+  &__title {
+    @include section-title;
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    color: var(--color-muted);
+    margin-bottom: 28px;
+  }
+}

@@ -1,0 +1,12 @@
+<div class="toast-container">
+  <div
+    *ngFor="let toast of notifications.toasts()"
+    class="toast"
+    [class.toast--success]="toast.type === 'success'"
+    [class.toast--error]="toast.type === 'error'"
+    [@toastAnim]
+    (click)="dismiss(toast.id)"
+  >
+    {{ toast.message }}
+  </div>
+</div>

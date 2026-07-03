@@ -1,0 +1,49 @@
+<header class="navbar" [class.scrolled]="scrolled">
+  <div class="navbar__inner container">
+    <a routerLink="/" class="navbar__logo" (click)="closeMenu()">
+      <span class="navbar__logo-icon">K</span>
+      <span class="navbar__logo-text">Kinesiofirst</span>
+    </a>
+
+    <nav class="navbar__links">
+      <a
+        *ngFor="let link of links"
+        [routerLink]="link.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+        class="navbar__link"
+      >
+        {{ link.label }}
+      </a>
+    </nav>
+
+    <a routerLink="/contact" class="navbar__cta btn-primary">Закажи Термин</a>
+
+    <button
+      class="navbar__burger"
+      [class.open]="menuOpen"
+      (click)="toggleMenu()"
+      aria-label="Мени"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="navbar__drawer" [class.open]="menuOpen">
+    <a
+      *ngFor="let link of links"
+      [routerLink]="link.path"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+      class="navbar__drawer-link"
+      (click)="closeMenu()"
+    >
+      {{ link.label }}
+    </a>
+    <a routerLink="/contact" class="btn-primary navbar__drawer-cta" (click)="closeMenu()">
+      Закажи Термин
+    </a>
+  </div>
+</header>
