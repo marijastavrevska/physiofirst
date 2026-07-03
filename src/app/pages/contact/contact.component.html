@@ -36,18 +36,21 @@
         <span>Пон – Саб, 07:00 – 22:00</span>
       </div>
 
-      <div class="contact-info__social">
-        <a href="#" aria-label="Instagram">IG</a>
-        <a href="#" aria-label="Facebook">FB</a>
-        <a href="#" aria-label="LinkedIn">IN</a>
-      </div>
+      <app-social-links></app-social-links>
 
-      <div class="contact-info__map" data-placeholder="Google Maps">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M12 21s-7-6.2-7-11a7 7 0 1114 0c0 4.8-7 11-7 11z" />
-          <circle cx="12" cy="10" r="2.5" />
-        </svg>
-        <span>Google Maps</span>
+      <div class="contact-info__map">
+        <a class="contact-info__map-link" [href]="mapLinkUrl" target="_blank" rel="noopener">
+          Отвори во Maps
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M8 7h9v9" />
+          </svg>
+        </a>
+        <iframe
+          [src]="mapEmbedUrl"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
       </div>
     </div>
 
@@ -91,22 +94,24 @@
             <p class="form-error" *ngIf="hasError('email', 'email')">Внесете валидна е-маил адреса</p>
           </div>
 
-          <div class="form-field">
-            <label for="serviceType">Тип на Услуга*</label>
-            <select
-              id="serviceType"
-              formControlName="serviceType"
-              [class.invalid]="hasError('serviceType', 'required')"
+          <div class="form-field date-field">
+            <label for="preferredDateTrigger">Преферирана Дата*</label>
+            <button
+              type="button"
+              id="preferredDateTrigger"
+              class="date-trigger"
+              (click)="toggleCalendar()"
+              [class.invalid]="hasError('preferredDate', 'required')"
             >
-              <option value="" disabled>Изберете услуга</option>
-              <option *ngFor="let opt of serviceOptions" [value]="opt">{{ opt }}</option>
-            </select>
-            <p class="form-error" *ngIf="hasError('serviceType', 'required')">Ова поле е задолжително</p>
-          </div>
-
-          <div class="form-field">
-            <label>Преферирана Дата*</label>
-            <app-calendar-picker [selected]="selectedDate()" (dateSelected)="onDateSelected($event)"></app-calendar-picker>
+              <span [class.placeholder]="!selectedDate()">{{ selectedDate() ? formattedDate : 'Изберете датум' }}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="5" width="18" height="16" rx="2" />
+                <path d="M3 10h18M8 3v4M16 3v4" />
+              </svg>
+            </button>
+            <div class="date-popover" *ngIf="calendarOpen()">
+              <app-calendar-picker [selected]="selectedDate()" (dateSelected)="onDateSelected($event)"></app-calendar-picker>
+            </div>
             <p class="form-error" *ngIf="hasError('preferredDate', 'required')">Ова поле е задолжително</p>
           </div>
 

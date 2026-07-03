@@ -1,13 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, signal } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { CalendarPickerComponent } from '../../shared/components/calendar-picker/calendar-picker.component';
+import { SocialLinksComponent } from '../../shared/components/social-links/social-links.component';
 import { ReservationService } from '../../core/services/reservation.service';
 import { NotificationService } from '../../core/services/notification.service';
 
 const PHONE_PATTERN = /^(\+389\s?|0)7\d([\s-]?\d{3}){2}$/;
+const ADDRESS = 'Стево Патако 1, Битола, Македонија';
 
 function toIsoDate(date: Date): string {
   const y = date.getFullYear();
@@ -19,7 +22,7 @@ function toIsoDate(date: Date): string {
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, CalendarPickerComponent],
+  imports: [CommonModule, ReactiveFormsModule, CalendarPickerComponent, SocialLinksComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
   animations: [
@@ -32,15 +35,6 @@ function toIsoDate(date: Date): string {
   ],
 })
 export class ContactComponent implements OnDestroy {
-  readonly serviceOptions = [
-    'Рехабилитација — Акутни и Хронични Состојби',
-    'Корекција на Постура',
-    'Спортска Рехабилитација',
-    'Невролошка Рехабилитација',
-    'Биомеханичка Проценка (Премиум)',
-    'Не сум сигурен — сакам совет',
-  ];
-
   readonly timeSlots: string[] = Array.from({ length: 15 }, (_, i) => {
     const hour = 7 + i;
     return `${String(hour).padStart(2, '0')}:00`;
@@ -49,12 +43,15 @@ export class ContactComponent implements OnDestroy {
   readonly submitting = signal(false);
   readonly submitted = signal(false);
   readonly selectedDate = signal<Date | null>(null);
+  readonly calendarOpen = signal(false);
+
+  readonly mapEmbedUrl: SafeResourceUrl;
+  readonly mapLinkUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
 
   readonly form = this.fb.group({
     fullName: ['', [Validators.required]],
     phone: ['', [Validators.required, Validators.pattern(PHONE_PATTERN)]],
     email: ['', [Validators.email]],
-    serviceType: ['', [Validators.required]],
     preferredDate: ['', [Validators.required]],
     preferredTime: [{ value: '', disabled: true }, [Validators.required]],
     notes: ['', [Validators.maxLength(500)]],
@@ -66,11 +63,25 @@ export class ContactComponent implements OnDestroy {
   constructor(
     private fb: FormBuilder,
     private reservationService: ReservationService,
-    private notifications: NotificationService
-  ) {}
+    private notifications: NotificationService,
+    private sanitizer: DomSanitizer,
+    private elementRef: ElementRef
+  ) {
+    this.mapEmbedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+      `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`
+    );
+  }
 
   get notesLength(): number {
     return this.form.get('notes')?.value?.length ?? 0;
+  }
+
+  get formattedDate(): string {
+    const d = this.selectedDate();
+    if (!d) return '';
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    return `${day}.${month}.${d.getFullYear()}`;
   }
 
   hasError(control: string, error: string): boolean {
@@ -78,10 +89,24 @@ export class ContactComponent implements OnDestroy {
     return !!c && c.touched && c.hasError(error);
   }
 
+  toggleCalendar(): void {
+    this.calendarOpen.update((open) => !open);
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.calendarOpen()) return;
+    const dateField = this.elementRef.nativeElement.querySelector('.date-field');
+    if (dateField && !dateField.contains(event.target)) {
+      this.calendarOpen.set(false);
+    }
+  }
+
   onDateSelected(date: Date): void {
     this.selectedDate.set(date);
     this.form.patchValue({ preferredDate: toIsoDate(date), preferredTime: '' });
     this.form.get('preferredTime')?.enable();
+    this.calendarOpen.set(false);
   }
 
   submit(): void {
@@ -98,7 +123,6 @@ export class ContactComponent implements OnDestroy {
         fullName: value.fullName!,
         phone: value.phone!,
         email: value.email || undefined,
-        serviceType: value.serviceType!,
         preferredDate: value.preferredDate!,
         preferredTime: value.preferredTime!,
         notes: value.notes || undefined,
