@@ -132,7 +132,9 @@
               formControlName="notes"
               rows="4"
               maxlength="500"
+              [class.invalid]="hasError('notes', 'maxlength')"
             ></textarea>
+            <p class="form-error" *ngIf="hasError('notes', 'maxlength')">Максимум 500 карактери</p>
             <p class="form-hint">{{ notesLength }}/500</p>
           </div>
 

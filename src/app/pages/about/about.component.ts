@@ -28,10 +28,10 @@ export class AboutComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     const badges = this.certGridRef.nativeElement.querySelectorAll('.cert-badge');
-    this.scrollAnim.animateFadeUp(badges, 0.08);
+    this.scrollAnim.animateFadeUp(badges, 0.08, this.certGridRef.nativeElement);
 
     const photos = this.galleryRef.nativeElement.querySelectorAll('.gallery-item');
-    this.scrollAnim.animateFadeUp(photos, 0.08);
+    this.scrollAnim.animateFadeUp(photos, 0.08, this.galleryRef.nativeElement);
   }
 
   ngOnDestroy(): void {

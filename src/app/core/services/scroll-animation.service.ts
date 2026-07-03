@@ -74,14 +74,9 @@ export class ScrollAnimationService {
     );
   }
 
-  /** Simple entrance timeline helper for hero-style content. */
-  timeline(): gsap.core.Timeline {
-    return gsap.timeline();
-  }
-
   /** Alias for staggerFadeUp, matching design-doc naming. */
-  animateFadeUp(targets: string | Element | Element[] | NodeListOf<Element>, stagger = 0.15): void {
-    this.staggerFadeUp(targets, { stagger });
+  animateFadeUp(targets: string | Element | Element[] | NodeListOf<Element>, stagger = 0.15, trigger?: Element): void {
+    this.staggerFadeUp(targets, { stagger, trigger });
   }
 
   animateFromLeft(target: Element, delay = 0): void {
