@@ -1,4 +1,4 @@
-<header class="navbar" [class.scrolled]="scrolled">
+<header class="navbar" [class.scrolled]="scrolled" appClickOutside (appClickOutside)="closeMenu()">
   <div class="navbar__inner container">
     <a routerLink="/" class="navbar__logo" (click)="closeMenu()">
       <span class="navbar__logo-icon">K</span>

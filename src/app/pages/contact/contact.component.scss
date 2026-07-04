@@ -229,12 +229,17 @@
 }
 
 .date-popover {
+  display: none;
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
   right: 0;
   z-index: 20;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+  &--open {
+    display: block;
+  }
 }
 
 .form-error {
