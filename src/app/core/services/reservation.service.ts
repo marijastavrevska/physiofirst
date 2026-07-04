@@ -7,7 +7,6 @@ export interface ReservationRequest {
   fullName: string;
   phone: string;
   email?: string;
-  serviceType: string;
   preferredDate: string;
   preferredTime: string;
   notes?: string;

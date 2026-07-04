@@ -1,12 +1,8 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  OnDestroy,
-} from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
+import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 
 interface NavLink {
   label: string;
@@ -16,7 +12,7 @@ interface NavLink {
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive, ClickOutsideDirective],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
@@ -34,7 +30,7 @@ export class NavbarComponent implements OnDestroy {
 
   private routerSub;
 
-  constructor(private elementRef: ElementRef, private router: Router) {
+  constructor(private router: Router) {
     this.routerSub = this.router.events
       .pipe(filter((e) => e instanceof NavigationEnd))
       .subscribe(() => (this.menuOpen = false));
@@ -43,13 +39,6 @@ export class NavbarComponent implements OnDestroy {
   @HostListener('window:scroll')
   onWindowScroll(): void {
     this.scrolled = (typeof window !== 'undefined' ? window.scrollY : 0) > 80;
-  }
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    if (this.menuOpen && !this.elementRef.nativeElement.contains(event.target)) {
-      this.menuOpen = false;
-    }
   }
 
   toggleMenu(): void {

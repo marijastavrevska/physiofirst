@@ -1,0 +1,26 @@
+.social-links {
+  display: flex;
+  gap: 10px;
+
+  &__item {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    &:hover {
+      color: var(--color-accent);
+      box-shadow: var(--shadow-glow);
+    }
+  }
+}
