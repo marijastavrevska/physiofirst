@@ -125,9 +125,15 @@ export class ScrollAnimationService {
     });
   }
 
+  // Deliberately per-instance rather than the global ScrollTrigger.refresh():
+  // the global refresh batches in a "preserve scroll position across the
+  // refresh" step (meant to keep pinned sections from jumping visually),
+  // which fights with our own scroll-to-top-on-navigation logic. We never
+  // use pin:true anywhere, so recalculating each trigger's geometry
+  // independently gives the same fix with none of that side effect.
   refresh(): void {
     if (typeof window === 'undefined') return;
-    ScrollTrigger.refresh();
+    ScrollTrigger.getAll().forEach((trigger) => trigger.refresh());
   }
 
   killAll(): void {
