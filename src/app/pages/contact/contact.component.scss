@@ -40,6 +40,11 @@
   position: sticky;
   top: calc(var(--header-height) + 24px);
 
+  @include respond(mobile) {
+    position: static;
+    top: auto;
+  }
+
   &__item {
     display: flex;
     align-items: center;

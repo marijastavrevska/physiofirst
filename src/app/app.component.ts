@@ -22,6 +22,15 @@ export class AppComponent implements OnDestroy {
     private router: Router,
     private scrollAnim: ScrollAnimationService
   ) {
+    // The browser's own native scroll restoration for pushState-based
+    // navigation fights with Angular's scroll-to-top and can leave the
+    // page scrolled to wherever the previous route happened to be
+    // (clamped to the new page's height) instead of the top. Disabling
+    // it hands scroll control entirely to Angular/our own logic below.
+    if (typeof window !== 'undefined' && 'scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
     this.routerSub = this.router.events
       .pipe(filter((e) => e instanceof NavigationEnd))
       .subscribe(() => this.refreshScrollTriggersAfterNavigation());
@@ -38,10 +47,16 @@ export class AppComponent implements OnDestroy {
   // NavigationEnd (raced against a render tick internally), so a single
   // rAF isn't a reliable enough margin — two frames guarantees we recompute
   // ScrollTrigger positions after that reset has actually taken effect.
+  // ScrollTrigger.refresh() itself records whatever the current scroll
+  // position is and restores it afterward, so we force scrollTo(0,0)
+  // ourselves right before calling it — otherwise it can race Angular's
+  // own reset and end up capturing (and re-applying) the previous page's
+  // stale scroll offset instead of the top.
   private refreshScrollTriggersAfterNavigation(): void {
     if (typeof window === 'undefined') return;
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
         this.scrollAnim.refresh();
       });
     });
