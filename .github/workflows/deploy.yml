@@ -3,6 +3,12 @@ name: Deploy Angular to GitHub Pages
 on:
   push:
     branches: [main]
+  # Lets a fresh, artifact-clean run be triggered on demand. Prefer this
+  # over "Re-run failed jobs" for this workflow: a re-run reuses the same
+  # run ID and its old github-pages artifact isn't cleared, so re-running
+  # after a failed deploy step creates a second same-named artifact and
+  # deploy-pages fails with "Multiple artifacts named github-pages found".
+  workflow_dispatch:
 
 permissions:
   contents: read
